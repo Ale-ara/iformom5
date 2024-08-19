@@ -309,6 +309,32 @@
     }
 
 }
+
+ #loading-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            opacity: 0; 
+            transition: opacity 0.5s ease-in-out; 
+        }
+        #loading-message.show {
+            opacity: 1;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translate(-50%, -50%); }
+            to { opacity: 0; transform: translate(-50%, -60%); }
+        }
+        
     </style>
 </head>
 
@@ -332,7 +358,7 @@
     
         <div id="resultSection" class="result-section">
             <p><strong>Nome de Usuário:</strong> <span id="resultUsername"></span></p>
-            <p><strong>Curso Aplicado:</strong> Especialização Militar (EM)</p>
+            <p><strong>Curso Aplicado:</strong> Aula de Segurança Operacional (ASO)</p>
             <p><strong>Data e Horário:</strong> <span id="resultDateTime"></span></p>
             <p><strong>Nickname dos Alunos Presentes:</strong> <span id="resultPresentStudents"></span></p>
             <p><strong>Nickname dos Alunos Aprovados:</strong> <span id="resultApprovedStudents"></span></p>
@@ -359,10 +385,15 @@
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
         </div>
+
+        <div id="loading-message">
+    <h3>Carregando...</h3>
+</div>
+
     
         <div id="successMessage" class="success-message">
             <p>Dados enviados com sucesso!</p>
-            <a href="https://docs.google.com/spreadsheets/d/1YV6o8myrXU5AmhhDvR0VeC1n7jAPNpJq4TdTcGLWuSE/edit?usp=sharing" class="btn btn-success">Conferir postagem na planilha.</a>
+            <a href="https://docs.google.com/spreadsheets/d/1K1Qg2ZsbfZqfJNtlwWs_QC9wpCpAtXdoyKBUjRYqzxE/edit?usp=sharing" class="btn btn-success">Conferir postagem na planilha.</a>
         </div>
     </div>
     
@@ -371,7 +402,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script>
+   <script>
     function showData(event) {
         event.preventDefault();
         const now = new Date();
@@ -414,38 +445,54 @@
         document.getElementById('resultSection').classList.add('show');
     }
 
-    function sendDataToGoogleSheets() {
-        const now = new Date();
-        const formattedEndDateTime = now.toLocaleString();
+function sendDataToGoogleSheets() {
+    const loadingMessage = document.getElementById('loading-message');
+    loadingMessage.classList.add('show');
+    loadingMessage.style.animation = 'fadeIn 0.5s ease-in-out';
 
-        const data = {
-            username: document.getElementById('resultUsername').textContent,
-            course: 'Especialização Militar',
-            dateTime: document.getElementById('resultDateTime').textContent,
-            endDateTime: formattedEndDateTime, // 
-            presentStudents: document.getElementById('resultPresentStudents').textContent,
-            approvedStudents: document.getElementById('resultApprovedStudents').textContent,
-            comments: document.getElementById('resultComments').textContent
-        };
+    const now = new Date();
+    const formattedEndDateTime = now.toLocaleString();
 
-        fetch('https://script.google.com/macros/s/AKfycbw36Hwd_m4b3MGww8cSQ92qbVVzs2NevRXQikemRv5f7XG6BrUjmNNnTUkKimBOyXhh/exec', {
-            method: 'POST',
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
-            if (result.result === 'success') {
-                document.getElementById('resultSection').classList.remove('show');
-                document.getElementById('successMessage').style.display = 'block';
-            } else {
-                alert('Erro ao enviar dados: ' + result.error);
-            }
-        })
-        .catch(error => {
-            alert('Erro ao enviar dados: ' + error.message);
-        });
-    }
+    const data = {
+        username: document.getElementById('resultUsername').textContent,
+        course: 'Especialização Militar',
+        dateTime: document.getElementById('resultDateTime').textContent,
+        endDateTime: formattedEndDateTime,
+        presentStudents: document.getElementById('resultPresentStudents').textContent,
+        approvedStudents: document.getElementById('resultApprovedStudents').textContent,
+        comments: document.getElementById('resultComments').textContent
+    };
+
+    fetch('https://script.google.com/macros/s/AKfycbx_F85liTAecY0_nt7S2dwwOvQ8BoabguoM-mHAa9e0iBh1Mx0Mtw64NbE41wu-xGAxew/exec', {
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.result === 'success') {
+            document.getElementById('resultSection').classList.remove('show');
+            document.getElementById('successMessage').style.display = 'block';
+        } else {
+            alert('Erro ao enviar dados: ' + result.error);
+        }
+    })
+    .catch(error => {
+        alert('Erro ao enviar dados: ' + error.message);
+    })
+    .finally(() => {
+        // Remove a mensagem de loading após alguns segundos
+        setTimeout(() => {
+            loadingMessage.style.animation = 'fadeOut 0.5s ease-in-out';
+            setTimeout(() => {
+                loadingMessage.classList.remove('show');
+            }, 500); // Aguarda a animação de fadeOut antes de remover a classe 'show'
+        }, 2000); // Tempo em milissegundos que a mensagem ficará visível (2 segundos)
+    });
+}
+
 </script>
+
+
 </body>
 
 </html>
