@@ -1,500 +1,459 @@
-<html lang=pt-br" dir="ltr"><head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>[OM] Iform</title>
-        <link rel="icon" href="https://www.habbo.com.br/habbo-imaging/badge/b09134s43114s41194f74f3131b8a5c9311558ee0f561db7e0.gif">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>[OM] - Iform</title>
+    <link rel="icon" href="https://i.imgur.com/VLC7WmW.png">
     <link rel="stylesheet" href="css.css">
-    <meta name="viewport" content="width=device-width, initial-scales=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    
     <style>
-         /* Qox é lindo, copia não comédia :) */
-        body,
         html {
-            padding: 0;
+            height: 100%;
+            background: #f1f1f1;
+    background-image: url('https://i.imgur.com/EzlQF6I.png');
+    background-position: center center;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-blend-mode: normal;
+            animation: gradientAnimation 15s ease infinite;
+        }
+    
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    
+        body {
             margin: 0;
-            font-family: Inter, Roboto, sans-serif;
-            background: url('https://i.imgur.com/IufTVTQ.jpg') center center fixed;
-            background-size: cover;
-        }
-
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #265646;
-            box-shadow: 0 1px 0 rgba(22, 8, 43, 0.1);
-            padding: 0 1rem;
-            z-index: 100;
-        }
-
-        .header_container {
+            padding: 0;
             display: flex;
+            justify-content: center;
             align-items: center;
-            height: 3.5rem;
-            justify-content: space-between;
+            min-height: 100vh;
+            font-family: "Poppins", sans-serif;
+            overflow-y: auto;
+            background: transparent;
         }
-
-        .header_container span {
-            color: #f9f6fd;
-            font-size: 1.4rem;
-            position: absolute;
-            right: calc(32px + 70px + 40px);
-        }
-
-        .header_img {
-            width: 45px;
-            height: 45px;
-            position: absolute;
-            right: calc(16px + 35px + 20px);
-        }
-
-        .header_logo {
-            color: #e3e3e3;
-            font-weight: 400;
-            display: none;
-        }
-
-        .header_toggle {
-            font-size: 1.2rem;
-            color: #e3e3e3;
-        }
-
+    
         .container {
+            width: 100%;
             max-width: 800px;
-            margin: 180px auto;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-        }
-
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        .form-control {
-            width: 90%;
-            height: 55px;
-            padding: 10px 20px;
-            background: #fff;
-            border: 3px solid #ededf1;
-            border-radius: 5px;
-            font-weight: 500;
-            font-size: 18px;
-            color: #535353;
-            outline: none;
-            transition: all 0.2s ease;
-            outline-color: #18382e;
-        }
-
-        .form-control:focus {
-            outline-color: #18382e;
-        }
-
-        textarea.form-control {
-            height: 100px;
-            resize: vertical;
-        }
-
-        .btn-primary {
-            width: 100%;
-            max-width: 300px;
-            height: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            margin-left: 100px;
-        }
-
-        .btn-secondary,
-        .btn-success {
-            width: 100%;
-            max-width: 300px;
-            height: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: #265646;
-            border-color: #18382e;
-        }
-
-        .btn-primary:hover {
-            background-color: #18382e;
-            border-color: #18382e;
-        }
-
-        .btn-secondary {
-            background-color: #6c757d;
-        }
-
-        .btn-secondary:hover {
-            background-color: #5a6268;
-        }
-
-        .btn-success {
-            background-color: #18382e;
-        }
-
-        .btn-success:hover {
-            background-color: #18382e;
-        }
-
-        .result-section {
-            display: none;
-            margin-top: 30px;
-        }
-
-        .result-section.show {
-            display: block;
-        }
-
-        .result-section h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .result-section p {
-            margin-bottom: 10px;
-        }
-
-        .result-section .form-control {
-            width: 100%;
-            border: 3px solid #ededf1;
             background-color: #fff;
-            pointer-events: auto;
-        }
-
-        .success-message {
-            display: none;
-            margin-top: 30px;
-            text-align: center;
-            font-size: 1.2rem;
-            color: green;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-
-
- @media only screen and (max-width: 768px) {
-            .container {
-                margin: 100px auto;
-                padding: 20px;
-            }
-            
-            .header_container span {
-                right: 10px;
-            }
-            
-            .header_img {
-                right: 5px;
-            }
-            
-            .header_logo {
-                display: block;
-                font-size: 1.2rem;
-                margin-right: 5px;
-            }
-            
-            .header_toggle {
-                display: none;
-            }
-        }
-
-        @media only screen and (max-width: 576px) {
-    .container {
-        max-width: 90%; 
-        margin: 320px auto 50px; 
-        padding: 20px; 
-    }
-}
-
-
-@media only screen and (max-width: 576px) {
-    .btn-primary {
-        height: 60px; 
-        font-size: 20px;
-        margin-left: 20px; 
-    }
-
-    .btn-secondary,
-    .btn-success {
-        height: 60px; 
-        font-size: 20px; 
-    }
-}
-
-        @media only screen and (min-width: 1600px) {
-    .container {
-        max-width: 1000px; 
-        margin: 320px auto 100px;
-        padding: 40px; 
-    }
-}
-
-    .header_container span {
-        font-size: 1.6rem; 
-    }
-
-    .header_img {
-        width: 50px;
-        height: 50px;
-    }
-
-    .header_logo {
-        font-size: 1.8rem; 
-    }
-
-    .form-control {
-        height: 60px; 
-        font-size: 20px;
-    }
-
-    .btn-primary{
-    height: 60px; 
-        font-size: 20px;
-    }
-
-    .btn-secondary,
-    .btn-success {
-        height: 60px; 
-        font-size: 20px; 
-    }
-
-    @media only screen and (max-width: 420px) {
-    .container {
-        max-width: 300px; 
-        margin: 320px auto 100px; 
-        padding: 20px; 
-    }
-
-    .btn-primary {
-    height: 60px; 
-    font-size: 20px; 
-    margin-top: 10px; 
-    margin-left: 20px; 
-}
-
-    .btn-secondary,
-    .btn-success {
-        height: 60px; 
-        font-size: 20px; 
-    }
-
-}
-
- #loading-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             padding: 20px;
-            background: white;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 999;
-            opacity: 0; 
-            transition: opacity 0.5s ease-in-out; 
+            margin-top: 80px;
+            margin-bottom: 40px; 
+            margin-left: 10px;
+            position: relative;
+            z-index: 1; 
+            transition: background-color 0.3s;
         }
-        #loading-message.show {
-            opacity: 1;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -60%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; transform: translate(-50%, -50%); }
-            to { opacity: 0; transform: translate(-50%, -60%); }
+    
+        .tittle {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
         }
         
+    
+        .details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+    
+        .input-box {
+            position: relative;
+        }
+    
+        .details_span {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+    
+        input[type="text"],
+        select,
+        input[type="number"] {
+            width: 90%; 
+            height: 52px;
+            background-color: #e7e7e7;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 15px;
+            color: #282828;
+            transition: border-color 0.3s ease;
+        }
+    
+        .button {
+            grid-column: span 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+            background-color: white;
+            color: rgba(0, 0, 0, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 1.15rem;
+            height: 90px;
+            z-index: 2;
+            position: relative;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+    
+        .button .icon {
+            margin-right: 8px;
+            height: 1.15rem;
+            width: auto;
+        }
+    
+        .button:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.01);
+        }
+    
+        .card {
+    display: block; 
+}
+
+        .card.active {
+            display: block; 
+        }
+    
+    
+        .form-container .row {
+            display: flex;
+            gap: 10px;
+        }
+    
+        .form-container .row input,
+        .form-container .row select,
+        .form-container .row textarea {
+            width: calc(50% - 5px);
+        }
+    
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+    
+        ::-webkit-scrollbar-thumb {
+        background: #237927;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #237927;
+      }
+
+      body {
+        scrollbar-width: thin;
+        scrollbar-color: #2b832f #104212;
+      }
+    
+        .buttons {
+            display: flex;
+            justify-content: space-around; 
+            margin-bottom: 20px; 
+        }
+    
+        .initial-image {
+            display: block;
+            margin: 0 auto 20px;
+            max-width: 100%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            margin-top: 100px;
+        }
+    
+        .card.active + .initial-image {
+            display: none; 
+        }
+    
+        input[type="submit"] {
+            width: 100%;
+            height: 68px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+    
+        input[type="submit"]:hover {
+            background-color: rgba(0, 0, 0, 0.637);
+        }
+    
+        
+        @media screen and (min-width: 2560px) and (min-height: 1440px) {
+            .initial-image {
+                margin-top: 600px; 
+            }
+            .container {
+                margin-top: 220px; 
+            }
+        }
+    
+        @media screen and (min-width: 1920px) and (min-height: 1080px) {
+            .initial-image {
+                margin-top: 330px;
+            }
+            .container {
+                margin-top: 200px; 
+            }
+        }
+    
+        @media screen and (min-width: 1600px) and (max-width: 1919px) {
+            .initial-image {
+                margin-top: 270px; 
+            }
+            .container {
+                margin-top: 150px; 
+            }
+        }
+    
+        @media screen and (min-width: 1366px) and (max-width: 1599px) {
+            .initial-image {
+                margin-top: 150px; 
+            }
+            .container {
+                margin-top: 120px; 
+        }
+    }
+    
+        @media screen and (min-width: 1280px) and (max-width: 1365px) {
+            .initial-image {
+                margin-top: 130px; 
+            }
+            .container {
+                margin-top: 110px; 
+            }
+        }
+    
+        @media screen and (min-width: 1024px) and (max-width: 1279px) {
+            .initial-image {
+                margin-top: 40px; 
+            }
+            .container {
+                margin-top: 100px; 
+            }
+        }
+    
+        @media screen and (min-width: 768px) and (max-width: 1023px) {
+            .initial-image {
+                margin-top: 110px; 
+            }
+            .container {
+                margin-top: 90px; 
+            }
+        }
+    
+        @media screen and (max-width: 767px) {
+            .initial-image {
+                margin-top: 130px; 
+            }
+            .container {
+                margin-top: 80px; 
+            }
+        }
     </style>
+    
+    
 </head>
-
 <body>
-
-    <div class="container">
-        <div id="formSection" class="Form_form-container__2xHNR">
-            <form id="formData" onsubmit="showData(event)">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="presentStudents" name="presentStudents" placeholder="Nickname dos alunos, se for mais de um, separe com /." required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="approvedStudents" name="approvedStudents" placeholder="Nickname dos alunos aprovados, separe com /." required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="comments" name="comments" placeholder="Comentários">
-                </div>
-                <button type="submit" class="btn btn-primary">Enviar</button>
-            </form>
-        </div>
-    
-        <div id="resultSection" class="result-section">
-            <p><strong>Nome de Usuário:</strong> <span id="resultUsername"></span></p>
-            <p><strong>Curso Aplicado:</strong> Aula de Especialização Militar (EM)</p>
-            <p><strong>Data e Horário:</strong> <span id="resultDateTime"></span></p>
-            <p><strong>Nickname dos Alunos Presentes:</strong> <span id="resultPresentStudents"></span></p>
-            <p><strong>Nickname dos Alunos Aprovados:</strong> <span id="resultApprovedStudents"></span></p>
-            <p><strong>Comentários:</strong> <span id="resultComments"></span></p>
-            <button class="btn btn-secondary" onclick="editData()">Corrigir</button>
-            <button class="btn btn-success" onclick="sendDataToGoogleSheets()">Enviar</button>
-        </div>
-    
-        <div id="editSection" class="result-section">
-            <h2>Correção</h2>
-            <form id="editForm" onsubmit="updateData(event)">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="editDateTime" name="editDateTime" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="editPresentStudents" name="editPresentStudents" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="editApprovedStudents" name="editApprovedStudents" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="editComments" name="editComments" placeholder="Comentários">
-                </div>
-                <button type="submit" class="btn btn-primary">Salvar</button>
-            </form>
-        </div>
-
-        <div id="loading-message">
-    <h3>Carregando...</h3>
-</div>
-
-    
-        <div id="successMessage" class="success-message">
-            <p>Dados enviados com sucesso!</p>
-            <a href="https://docs.google.com/spreadsheets/d/1K1Qg2ZsbfZqfJNtlwWs_QC9wpCpAtXdoyKBUjRYqzxE/edit?usp=sharing" class="btn btn-success">Conferir postagem na planilha.</a>
-        </div>
-    </div>
-    
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-   <script>
-        let formSubmissionDateTime = null; // Armazena a data de submissão
-    
-        function showData(event) {
-            event.preventDefault();
-            const now = new Date();
-            formSubmissionDateTime = now.toLocaleString(); // Armazena o horário da submissão
-    
-            document.getElementById('resultUsername').textContent = getUsernameFromURL();
-            document.getElementById('resultDateTime').textContent = formSubmissionDateTime; // Usa a mesma data
-            document.getElementById('resultPresentStudents').textContent = document.getElementById('presentStudents').value;
-            document.getElementById('resultApprovedStudents').textContent = document.getElementById('approvedStudents').value;
-            document.getElementById('resultComments').textContent = document.getElementById('comments').value;
-    
-            document.getElementById('formSection').style.display = 'none';
-            document.getElementById('resultSection').classList.add('show');
-        }
-    
-        function getUsernameFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('username') || 'Usuário';
-        }
-    
-        function editData() {
-            document.getElementById('editDateTime').value = document.getElementById('resultDateTime').textContent;
-            document.getElementById('editPresentStudents').value = document.getElementById('resultPresentStudents').textContent;
-            document.getElementById('editApprovedStudents').value = document.getElementById('resultApprovedStudents').textContent;
-            document.getElementById('editComments').value = document.getElementById('resultComments').textContent;
-    
-            document.getElementById('resultSection').classList.remove('show');
-            document.getElementById('editSection').classList.add('show');
-        }
-    
-        function updateData(event) {
-            event.preventDefault();
-    
-            document.getElementById('resultDateTime').textContent = document.getElementById('editDateTime').value;
-            document.getElementById('resultPresentStudents').textContent = document.getElementById('editPresentStudents').value;
-            document.getElementById('resultApprovedStudents').textContent = document.getElementById('editApprovedStudents').value;
-            document.getElementById('resultComments').textContent = document.getElementById('editComments').value;
-    
-            document.getElementById('editSection').classList.remove('show');
-            document.getElementById('resultSection').classList.add('show');
-        }
-    
-        function sendDataToGoogleSheets() {
-            const loadingMessage = document.getElementById('loading-message');
-            loadingMessage.classList.add('show');
-            loadingMessage.style.animation = 'fadeIn 0.5s ease-in-out';
-    
-            // Obtém o horário atual para o final
-            const now = new Date();
-            now.setHours(now.getHours() - 1); // Ajusta o horário para uma hora antes
-            const endDateTime = now.toLocaleString(); // Formata a data ajustada
-    
-            const data = {
-                username: document.getElementById('resultUsername').textContent,
-                course: 'Aula de Especialização Militar',
-                dateTime: formSubmissionDateTime, // Usa a data de submissão armazenada
-                endDateTime: endDateTime,
-                presentStudents: document.getElementById('resultPresentStudents').textContent,
-                approvedStudents: document.getElementById('resultApprovedStudents').textContent,
-                comments: document.getElementById('resultComments').textContent
-            };
-    
-            fetch('https://script.google.com/macros/s/AKfycbwCr-biD9-nEcNyvdtuwVJon1l2xeYz1va-FUTX1hIuv3u8fZZ6gHHOAwc2GwxuwxAWvg/exec', {
-                method: 'POST',
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.result === 'success') {
-                    document.getElementById('resultSection').classList.remove('show');
-                    document.getElementById('successMessage').style.display = 'block';
-                } else {
-                    alert('Erro ao enviar dados: ' + result.error);
+    <body>
+        <img src="https://i.imgur.com/GU8oq2S.png" alt="Imagem Inicial" class="initial-image">
+        <div class="container">
+            
+            
+            <div class="card" id="postagem_testes">
+                <div class="tittle">Especialização Militar [EM]</div>
+                <form id="postagem_testes_forms" action="#" onsubmit="return fill_testes(event)">
+                    <div class="details">
+                        <input type="text" name="horario_envio_test" id="horario_envio_test" value="-" style="display: none;">
+                        <div class="input-box">
+                            <span class="details_span">Início da Aplicação</span>
+                            <input id="inicio_aplicacao" name="inicio_aplicacao" class="data_hour" type="text" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details_span">Nickname do Conselheiro</span>
+                            <input id="nickname_aplicador" name="nickname_aplicador" type="text" placeholder="Nickname do conselheiro." required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details_span">Policiais Presentes</span>
+                            <input id="nickname_pres" name="nickname_pres" type="text" placeholder="Separe com ' / '" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details_span">Policiais Aprovados</span>
+                            <input id="nickname_aprov" name="nickname_aprov" type="text" placeholder="Separe com ' / '">
+                        </div>
+                        
+                        <div class="input-box" style="grid-column: span 2;">
+                            <span class="details_span">Comentários Adicionais</span>
+                            <input id="comentarios" name="comentarios" type="text" placeholder="Comentários sobre a aplicação, se necessário">
+                        </div>
+                        
+                        
+                        <div class="button" id="enviar_teste">
+                            <input type="hidden" id="nome_Curso" name="nome_Curso">
+                            <input type="submit" value="Enviar">
+                        </div>
+                        <div class="button" style="display: none;" id="enviar_teste_dis">
+                            <input type="submit" value="Enviando...Aguarde!" disabled>
+                        </div>
+                        
+                </form>
+            </div>
+            
+            <textarea style="display: none;" id="fa-generated-message"></textarea>
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    preencher_data('inicio_aplicacao');
+                    $('#select_options').on('change', function() {
+                        $(".card").hide();
+                        $("#" + $(this).val()).show();
+                    }).change();
+            
+                 
+                    $("#nome_Curso").val("Especialização Militar");
+                });
+            
+                function fill_testes(e) {
+                    e.preventDefault();
+                    var isValid = true;
+            
+                   
+                    $("#postagem_testes_forms input[required]").each(function() {
+                        if ($(this).val().trim() === "") {
+                            isValid = false;
+                            return false; 
+                        }
+                    });
+            
+                    if (isValid) {
+                        document.getElementById('enviar_teste').style.display = 'none';
+                        document.getElementById('enviar_teste_dis').style.display = 'flex';
+                        preencher_data('horario_envio_test');
+            
+                        var horarioFinalEnvio = new Date();
+                        document.getElementById('horario_envio_test').value = horarioFinalEnvio.toISOString();
+            
+                        // Gera a mensagem com os dados para o fórum
+                        var texto = gerarMensagem();
+                        document.getElementById('fa-generated-message').value = texto;
+            
+                        var form = document.getElementById("postagem_testes_forms");
+                        var link_url = 'https://script.google.com/macros/s/AKfycbytdB1keddnozhq5sNHCbIKzKObQjUMm_NM_QxI8alwwsbGbvmrgF_NimQAAAIzFf7HHA/exec';
+            
+                        fetch(link_url, { method: 'POST', body: new FormData(form) })
+                            .then(response => {
+                                console.log('Respostas enviadas!');
+                              
+                                window.location.href = 'https://www.policiarcc.com/f462-om-conselheiros';
+                            })
+                            .catch(error => {
+                                console.error('Resposta não enviada para a planilha. Contate um membro do ministério!');
+                              
+                                document.getElementById('enviar_teste').style.display = 'flex';
+                                document.getElementById('enviar_teste_dis').style.display = 'none';
+                            });
+            
+                        
+                        window.open('https://docs.google.com/spreadsheets/d/1K1Qg2ZsbfZqfJNtlwWs_QC9wpCpAtXdoyKBUjRYqzxE/edit?gid=783777322#gid=783777322');
+                    } else {
+                        alert('Preencha todos os campos!');
+                    }
+                    return isValid;
                 }
-            })
-            .catch(error => {
-                alert('Erro ao enviar dados: ' + error.message);
-            })
-            .finally(() => {
-                setTimeout(() => {
-                    loadingMessage.style.animation = 'fadeOut 0.5s ease-in-out';
-                    setTimeout(() => {
-                        loadingMessage.classList.remove('show');
-                    }, 500);
-                }, 2000);
-            });
-        }
+            
+                function preencher_data(id) {
+                    var horario = new Date();
+                    horario.setMinutes(horario.getMinutes() + horario.getTimezoneOffset() - 180);
+                    var data_hoje = horario.getDate().toString().padStart(2, '0');
+                    const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+                    var mes_hoje = meses[horario.getMonth()];
+                    var ano_hoje = horario.getFullYear();
+                    var horario_hoje = horario.getHours().toString().padStart(2, '0');
+                    var minutos_hoje = horario.getMinutes().toString().padStart(2, '0');
+                    var segundos_hoje = horario.getSeconds().toString().padStart(2, '0');
+            
+                    var dataCompleta = `${data_hoje} ${mes_hoje} ${ano_hoje} ${horario_hoje}:${minutos_hoje}:${segundos_hoje}`;
+                    document.getElementById(id).value = dataCompleta;
+                }
+            
+                function gerarMensagem() {
+                    var horario = new Date();
+                    var data_hoje = horario.getDate().toString().padStart(2, '0');
+                    const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+                    var mes_hoje = meses[horario.getMonth()];
+                    var ano_hoje = horario.getFullYear();
+                    var nickname_aprov = $("#nickname_aprov").val().trim();
+            
+                    var mensagem = '';
+                    if (parseInt($("#necessidade_novos").val()) == 5) {
+                        $("#nickname_aprov").val('Não houveram aprovados');
+                        mensagem = "GRADUAÇÃO\nNão houveram aprovados";
+                    } else if (nickname_aprov !== '') {
+                        var entradas = nickname_aprov.split('/');
+                        var lista = '';
+                        entradas.forEach(function (nickname) {
+                            nickname = nickname.trim();
+                            lista += "\nNick: " + nickname + " - " + data_hoje + ' ' + mes_hoje + ' ' + ano_hoje;
+                        });
+            
+                        mensagem = "CONSELHEIRO\n" + lista + "\n-: -";
+                    }
+                    return mensagem;
+                }
+            
+                function toggleForm(formId) {
+                    $(".card").hide(); 
+                    $("#" + formId).show(); 
+                }
+            </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+           
+            function getQueryParam(param) {
+                var urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+
+            
+            var nomeUsuario = getQueryParam('nome');
+
+           
+            if (nomeUsuario) {
+                document.getElementById('nickname_aplicador').value = nomeUsuario;
+            }
+        });
     </script>
-
-
-</body>
-
-</html>
+    </body>
+    </html>
